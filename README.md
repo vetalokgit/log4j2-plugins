@@ -1,4 +1,5 @@
 "# log4j2-plugins" 
+
 Simple log4j2 plugin that accumulates log output to RAM, than flushes to disk.
 Put log4j2.xml to karaf/etc folder, built Logger.jar to karaf/system folder, and modify karaf/etc/startup.properties file accordingly 
 (put startlevel=8).
