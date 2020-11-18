@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--WARN:It will print debug information about which log4j2 plugin components are loaded. Monitor interval detects configuraton changes-->
+<Configuration status="TRACE" monitorInterval="5" packages="com.ogp.logger.appender">
+    <Appenders>               
+		 <!--As soon as buffer length reaches fileSize (in bytes) or interval (in millis), 
+		 the appender will flush all accumulated log output from RAM nto disk-->
+		 <RamFile name="ogpserver" fileName="data/log/ogp-${hostName}" fileSize="2000000" interval="300000">            
+            <PatternLayout>
+                <pattern>%level{length=1} %date{MMdd-HHmm:ss,SSS} %logger{1.} %message [%thread]%n</pattern>
+            </PatternLayout>
+        </RamFile>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">            
+			<AppenderRef ref="ogpserver" level="DEBUG" />
+        </Root>
+		<Logger name="org.springframework.beans.factory.config.PropertyOverrideConfigurer" level="ERROR" additivity="false">
+			<AppenderRef ref="ogpserver" level="DEBUG" />
+		</Logger>            
+    </Loggers>
+</Configuration>
